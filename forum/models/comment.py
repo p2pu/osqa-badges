@@ -62,12 +62,14 @@ class Comment(Node):
         return self.body
 
     def prefix(self):
-        vote_comment = self.vote_comment.get()
-        if vote_comment.comment_type == VoteComment.COMMENT:
+        try:
+            vote_comment = self.vote_comment.get()
+            if vote_comment.comment_type == VoteComment.COMMENT:
+                return ''
+            else:
+                return vote_comment.get_comment_type_display() + ': '
+        except VoteComment.DoesNotExist:
             return ''
-        else:
-            return vote_comment.get_comment_type_display() + ': '
-
 
 class VoteComment(models.Model):
 
