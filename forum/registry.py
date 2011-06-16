@@ -56,18 +56,18 @@ class SuperUserSwitchMenuItem(ui.UserMenuItem):
         return context['viewer'].is_siteowner or not context['user'].is_superuser
 
 ui.register(ui.USER_MENU,
-            ui.UserMenuItem(
-                label=_("edit profile"),
-                url=lambda u, c: reverse('edit_user', kwargs={'id': c['user'].id}),
-                span_attrs={'class': 'user-edit'},
-                weight=0
-            ),
-            ui.UserMenuItem(
-                label=_("authentication settings"),
-                url=lambda u, c: reverse('user_authsettings', kwargs={'id': c['user'].id}),
-                span_attrs={'class': 'user-auth'},
-                weight=100
-            ),
+            #ui.UserMenuItem(
+            #    label=_("edit profile"),
+            #    url=lambda u, c: reverse('edit_user', kwargs={'id': c['user'].id}),
+            #    span_attrs={'class': 'user-edit'},
+            #    weight=0
+            #),
+            #ui.UserMenuItem(
+            #    label=_("authentication settings"),
+            #    url=lambda u, c: reverse('user_authsettings', kwargs={'id': c['user'].id}),
+            #    span_attrs={'class': 'user-auth'},
+            #    weight=100
+            #),
             ui.UserMenuItem(
                 label=_("email notification settings"),
                 url=lambda u, c: reverse('user_subscriptions', kwargs={'id': c['user'].id, 'slug': slugify(c['user'].username)}),

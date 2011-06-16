@@ -98,12 +98,12 @@
             <input type="hidden" class="validate_email" name="validate_email" value="yes" />
         </form>
     {% endfor %}
-    <h3 class="or_label">{% trans 'Or...' %}</h3>
+    <!--<h3 class="or_label">{% trans 'Or...' %}</h3>
     <form name="signin_form" id="dummy_form_unused" class="signin_form" method="POST" action="">
         <fieldset>
             {% trans 'Click' %} <a href="{% url auth_request_tempsignin %}">{% trans 'here' %}</a> {% trans "if you're having trouble signing in." %}
         </fieldset>
-    </form>
+    </form>-->
     <script type="text/html" id="simple_form_template">
         <fieldset id="slot_form">
               <p id="provider_name_slot">{% trans 'Enter your ' %}%%YOUR_WHAT%%</p>
@@ -164,13 +164,13 @@
 <div class="boxC">
     <ul class="list-item">
         <li>
-            {% trans 'In order to port your badges to your P2PU profile, we need to know who you are! So please use the login that you used to sign up for the School of Webcraft.' %}
+            {% trans "To login to the badges pilot, provide the same username and password, or openid that you use to login to new.p2pu.org. If you don't have an account at new.p2pu.org, you can register one" %} <a href="http://new.p2pu.org/register" target="_blank">{% trans 'here' %}</a>.
         </li>
         <li>
-            {% trans "If you login with the username and password that you use at " %}<a href="http://p2pu.org">p2pu.org</a>{% trans ", your email and real name will be automatically associated to your account at the badges pilot." %}
+            {% trans "Each time you login, your profile on the badges pilot will be updated with the information you entered on new.p2pu.org." %}
         </li>
         <li>
-            {% trans "The pilot also allows openid authentication in case that is how you usually login at " %}<a href="http://p2pu.org">p2pu.org</a>.
+            {% trans "If you need to" %} <a href="http://new.p2pu.org/en/profile/edit/" target="_blank">{% trans "update this information" %}</a> {% trans "or" %} <a href="http://new.p2pu.org/forgot" target="_blank">{% trans "reset your password" %}</a>, {% trans "please use the tools provided at new.p2pu.org." %}.
         </li>
     </ul>
 </div>

@@ -144,8 +144,8 @@ def process_provider_signin(request, provider):
         except:
             request.session['assoc_key'] = assoc_key
             request.session['auth_provider'] = provider
-            from forum.authentication.drupal_auth_backend import DrupalAuthBackend
-            open_id_user = DrupalAuthBackend.get_openid_user(assoc_key)
+            from forum.authentication.backend import LernantaAuthBackend
+            open_id_user = LernantaAuthBackend.get_openid_user(assoc_key)
             if open_id_user:
                 uassoc = AuthKeyUserAssociation(user=open_id_user, key=assoc_key, provider=provider)
                 uassoc.save()

@@ -113,6 +113,5 @@ if not DEBUG:
         pass
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'forum.authentication.drupal_auth_backend.DrupalAuthBackend',
+    'forum.authentication.backend.LernantaAuthBackend',
 ]

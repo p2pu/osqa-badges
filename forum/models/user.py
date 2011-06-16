@@ -127,7 +127,7 @@ class User(BaseModel, DjangoUser):
     last_seen = models.DateTimeField(default=datetime.datetime.now)
     real_name = models.CharField(max_length=100, blank=True)
     website = models.URLField(max_length=200, blank=True)
-    location = models.CharField(max_length=100, blank=True)
+    location = models.CharField(max_length=255, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     about = models.TextField(blank=True)
 
@@ -294,18 +294,22 @@ class User(BaseModel, DjangoUser):
     @true_if_is_super_or_staff
     def can_delete_comment(self, comment):
         from forum.models import VoteComment
-        if comment.vote_comment.get().comment_type == VoteComment.COMMENT:
-            return (self == comment.author or self.reputation >= int(settings.REP_TO_DELETE_COMMENTS))
-        else:
-            return False
+        try:
+            if comment.vote_comment.get().comment_type == VoteComment.COMMENT:
+                return (self == comment.author or self.reputation >= int(settings.REP_TO_DELETE_COMMENTS))
+        except VoteComment.DoesNotExist:
+            pass
+        return False
 
     @true_if_is_super_or_staff
     def can_convert_comment_to_answer(self, comment):
         from forum.models import VoteComment
-        if comment.vote_comment.get().comment_type == VoteComment.COMMENT:
-            return self == comment.author or self.reputation >= int(settings.REP_TO_CONVERT_COMMENTS_TO_ANSWERS)
-        else:
-            return False
+        try:
+            if comment.vote_comment.get().comment_type == VoteComment.COMMENT:
+                return self == comment.author or self.reputation >= int(settings.REP_TO_CONVERT_COMMENTS_TO_ANSWERS)
+        except VoteComment.DoesNotExist:
+            pass
+        return False
 
     def can_convert_to_comment(self, answer):
         return (not answer.marked) and (self.is_superuser or self.is_staff or answer.author == self or self.reputation >= int

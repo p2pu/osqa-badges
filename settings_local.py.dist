@@ -32,10 +32,10 @@ DATABASES = {
         'HOST': '', # An empty string means localhost.
         'PORT': '', # An empty string means the default port.
     },
-    'drupal_users': {
-        'NAME': 'drupal_user_data',
+    'lernanta_db': {
+        'NAME': 'lernanta',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'drupal_db_user',
+        'USER': 'lernanta_db_user',
         'PASSWORD': '',
         'HOST': '', # An empty string means localhost.
         'PORT': '', # An empty string means the default port.
@@ -62,4 +62,4 @@ LANGUAGE_CODE = 'en'
 DJANGO_VERSION = 1.1
 OSQA_DEFAULT_SKIN = 'default'
 
-DISABLED_MODULES = ['books', 'recaptcha', 'project_badges']
+DISABLED_MODULES = ['books', 'recaptcha', 'project_badges', 'localauth', 'facebookauth', 'oauthauth']

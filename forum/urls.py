@@ -31,7 +31,7 @@ for pattern_file in module_patterns:
 
 urlpatterns += patterns('',
                         url(r'^$', app.readers.index, name='index'),
-                        url(r'^%s(.*)' % _('nimda/'), admin.site.root),
+                        url(r'^%s(.*)' % _('nimda/'), include(admin.site.urls)),
                         
                         url(r'^sitemap.xml$', 'forum.sitemap.index', {'sitemaps': sitemaps}),
                         url(r'^sitemap-(?P<section>.+)\.xml$', 'forum.sitemap.sitemap', {'sitemaps': sitemaps}),
@@ -125,10 +125,10 @@ urlpatterns += patterns('',
 
 
                         url(r'^%s$' % _('users/'), app.users.users, name='users'),
-                        # url(r'^%s$' % _('online_users/'), app.users.online_users, name='online_users'),
+                        #url(r'^%s$' % _('online_users/'), app.users.online_users, name='online_users'),
 
 
-                        url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')), app.users.edit_user, name='edit_user'),
+                        #url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')), app.users.edit_user, name='edit_user'),
                         url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('award/')), app.users.award_points,
                             name='user_award_points'),
                         url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('suspend/')), app.users.suspend, name='user_suspend'
@@ -172,8 +172,8 @@ urlpatterns += patterns('',
                             name="auth_request_tempsignin"),
                         url(r'^%s%s(?P<user>\d+)/(?P<code>.+)/$' % (_('account/'), _('tempsignin/')),
                             app.auth.temp_signin, name="auth_tempsignin"),
-                        url(r'^%s(?P<id>\d+)/%s$' % (_('account/'), _('authsettings/')), app.auth.auth_settings,
-                            name='user_authsettings'),
+                        #url(r'^%s(?P<id>\d+)/%s$' % (_('account/'), _('authsettings/')), app.auth.auth_settings,
+                        #    name='user_authsettings'),
                         url(r'^%s%s(?P<id>\d+)/%s$' % (_('account/'), _('providers/'), _('remove/')),
                             app.auth.remove_external_provider, name='user_remove_external_provider'),
                         url(r'^%s%s%s$' % (_('account/'), _('providers/'), _('add/')), app.auth.signin_page,
